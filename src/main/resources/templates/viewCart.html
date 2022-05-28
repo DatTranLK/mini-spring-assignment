@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Cart Page</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<style>
+.header {
+	width: 100%;
+	height: 200px;
+	background-color: #ecf0f1;
+}
+
+.header h1 {
+	padding-top: 50px;
+	font-size: 50px;
+}
+</style>
+<body>
+	<div class="header">
+		<h1>Products</h1>
+		<p>All the available products in our store</p>
+
+	</div>
+	<div class="container">
+		<div class="row justify-content-between">
+			<div class="col-4" style="float: left">
+				<a th:href="@{/removeAllItemsInCart}" class="btn btn-danger"><i class="fa fa-times-circle"></i>
+					Clear Cart</a>
+			</div>
+			<div class="col-4" style="text-align: right">
+				<a class="btn btn-success"><i class="fa fa-shopping-cart"></i>
+					Check out</a>
+			</div>
+		</div>
+	</div>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Product</th>
+				<th scope="col">Quantity</th>
+				<th scope="col">Unit price</th>
+				<th scope="col">Price</th>
+				<th scope="col">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item: ${session.myCartItems}">
+				<td th:text="${item.value.product.name}"></td>
+				<td th:text="${item.value.quantity}"></td>
+				<td th:text="${item.value.product.price}"></td>
+				<td th:text="${item.value.product.price}"></td>
+				<td><a th:href="@{/remove(id=${item.key})}" class="btn btn-danger"><i class="fa fa-times"></i>
+						Remove</a></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<th>Grand Total</th>
+				<th th:text="${session.myCartTotal}"></th>
+			</tr>
+		</tbody>
+	</table>
+	<a th:href="@{/home}" class="btn btn-success"><i
+		class="fa fa-arrow-circle-left"></i> continuing shopping</a>
+</body>
+</html>

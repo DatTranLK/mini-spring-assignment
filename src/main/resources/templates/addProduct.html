@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add Product Page</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<style>
+.header {
+	width: 100%;
+	height: 200px;
+	background-color: #ecf0f1;
+}
+
+.header h1 {
+	padding-top: 50px;
+	font-size: 50px;
+}
+</style>
+</head>
+<body>
+	<div class="header">
+		<div class="col-sm-6">
+			<h1>Products</h1>
+			<p>Add Products</p>
+		</div>
+		<div class="col-sm-6" style="padding-top: 80px;">
+			<a th:href="@{/logout}" class="btn btn-danger"> Log out</a>
+		</div>
+	</div>
+	<p>Add new product</p>
+	<form th:action="@{/addNewProduct}" th:object="${productForm}" method="post" enctype="multipart/form-data">
+		Product Name <input type="text" name="name"><br/>
+		Unit Price <input type="text" name="price"><br/>
+		Units In Stock <input type="text" name="stock"><br/>
+		Description <input type="text" name="description"><br/>
+		Category <input type="text" name="category"><br/>
+		Product Image File <input type="file" name="file" class="form-control-file"> <br/>
+		<button type="submit" class="btn btn-primary">Add Product</button>
+	</form>
+</body>
+</html>
